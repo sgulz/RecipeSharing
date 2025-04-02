@@ -1,0 +1,61 @@
+:root {
+    --pageBackgroundColour: rgb(83, 145, 143);
+    --headerBackgroundColour: rgb(54, 93, 117);
+}
+
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--pageBackgroundColour);
+    color: antiquewhite;
+}
+
+#header {
+    width: 100%;           
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px;
+    border-radius: 40px;
+    background-color: var(--headerBackgroundColour);
+}
+
+#post-container {
+    flex: 0 0 auto;
+    background-color: var(--headerBackgroundColour);
+}
+
+#post-button {
+    background-color: var(--pageBackgroundColour);
+    border-radius: 100px;
+    font-size: 50px;
+    width: 75px;
+    height: 75px;
+}
+
+
+#title-container {
+    flex: 1;  
+    text-align: center;
+    background-color: var(--headerBackgroundColour);
+}
+
+#account-container {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 20px;  /* Space between sign in and login */
+    padding: 10px;
+    background-color: var(--headerBackgroundColour);
+}
+
+/* Style for the links/buttons in account container */
+#account-container a {
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: var(--headerBackgroundColour);
+}
+
+/* Make sure the h1 inherits header background */
+#header h1 {
+    background-color: var(--headerBackgroundColour);
+    font-size: 50px;
+}
