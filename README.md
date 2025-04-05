@@ -26,6 +26,12 @@ QMUL Software Engineering Project - Recipe Sharing Website
 - Example apps: recipes (handling all the recipe-related functions), social (handles all the social aspects)
 - Creating new apps: (from RecipeSharing) run 'python guzzle/manage.py startapp your_app_name'. Add the app name to INSTALLED_APPS in RecipeSharing/guzzle/guzzle/settings.py
 
+## Django Admin
+- Access: http://127.0.0.1:8000/admin/
+- Username: guzzle
+- Password: Guzzle123!
+- Why: View all database details
+
 ## Kanban Agile Methodology
 - Kanban board: https://miro.com/welcomeonboard/NnRBL0Z5b3l6S1AyWjZWTzUyOHl1SXhPdklMMnBmZVhRSkhXUzZuVHZnQ25QWEY2K0JXcnpOSjlreStQRjNnR0txaDJjTmxzS3piRnVzM3pvbVZVZlM0Y0Fra3kyNnc3allJVlRxcCs0OG9UdnlUcUZZNDVWNDJxN1RFNGs5VXZzVXVvMm53MW9OWFg5bkJoVXZxdFhRPT0hdjE=?share_link_id=802428780943
 
