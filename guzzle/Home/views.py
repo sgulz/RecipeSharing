@@ -4,5 +4,5 @@ from django.template import loader
 
 # Create your views here.
 def home(request):
-    template = loader.get_template('homePage.html')
-    return HttpResponse(template.render())
+    context = {}
+    return render(request, 'homePage.html', context)

@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guzzle</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/accountPage.css' %}">
+    
+</head>
+<body>
+    <div id="header">
+        <div id="post-container">
+            <button id="post-button">
+                +
+            </button>
+        </div>
+        <div id="title-container">
+            <a href="{% url 'home' %}" id="main-title">Guzzle</a>
+        </div>
+        <div id="account-container">
+            <a href="{% url 'signup' %}">Sign up</a>
+            <a href="{% url 'login' %}">Log in</a>
+        </div>
+
+    </div>
+    <div id="content">
+        <h1>Log In</h1>
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    required 
+                    aria-required="true"
+                    placeholder="Enter username">
+            </div>
+    
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required 
+                    aria-required="true"
+                    minlength="8"
+                    placeholder="Enter password">
+            </div>
+    
+            <button type="submit">Log In</button>
+
+            <div id="error-container">
+                {% if errorMessage %}
+                <ul>
+                    {% for message in errorMessage %}
+                      <li>{{ message }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+            </div>
+            
+
+        </form>
+    </div>
+    
+
+</body>
+</html>

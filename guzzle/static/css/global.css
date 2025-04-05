@@ -55,7 +55,12 @@
 }
 
 /* Make sure the h1 inherits header background */
-#header h1 {
+#main-title {
     background-color: var(--headerBackgroundColour);
     font-size: 50px;
+    text-decoration: none;
+}
+
+#content {
+    text-align: center;
 }
