@@ -194,3 +194,34 @@ class RecipeTest(TestCase):
         self.assertTrue(RecipeIngredient.objects.filter(recipe=recipe, ingredient=ingredient).exists())
 
 
+    def testGetUsersRecipes(self):
+        # Tests if recipes can be retrieved for a user successfully
+        user1 = User.objects.create(username="testuser1")
+        recipeProperties1 = {
+            'title': 'Test Recipe 1',
+            'description': 'This is the first test recipe.',
+            'instructions': 'Mix ingredients and bake.',
+            'duration': 30,
+            'servings': 4,
+            'calories': 200
+        }
+        user2 = User.objects.create(username="testuser2")
+        recipeProperties2 = {
+            'title': 'Test Recipe 2',
+            'description': 'This is the second test recipe.',
+            'instructions': 'Mix ingredients and bake.',
+            'duration': 45,
+            'servings': 6,
+            'calories': 300
+        }
+        self.recipeApplication.createRecipe(
+            author=user1,
+            **recipeProperties1
+        )
+        self.recipeApplication.createRecipe(
+            author=user2,
+            **recipeProperties2
+        )
+        recipes1 = self.recipeApplication.getUsersRecipes(user1)
+        recipes2 = self.recipeApplication.getUsersRecipes(user2)
+        self.assertFalse(recipes1 == recipes2)

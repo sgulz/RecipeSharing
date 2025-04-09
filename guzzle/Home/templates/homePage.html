@@ -35,7 +35,15 @@
     <div id="content">
         {% if user.is_authenticated %}
             <h2>Welcome, {{ user.username }}!</h2>
+
+            {% for recipe in recipes %}
+                <div class="recipe-link">
+                    <a href="{% url 'viewRecipe' recipe.id %}" class="recipe-link">{{ recipe.title }}  -   {{ recipe.author }}</a>
+                </div>
+                
+            {% endfor %}
         {% endif %}
+
 
     </div>
 
