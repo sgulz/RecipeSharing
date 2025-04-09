@@ -1,0 +1,146 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guzzle</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/createRecipePage.css' %}">
+    
+</head>
+<body>
+    <div id="header">
+        <div id="post-container">
+            <a href="{% url 'home' %}" id="post-button-wrapper">
+                <button id="post-button">
+                    🏠︎
+                </button>
+            </a>
+        </div>
+        <div id="title-container">
+            <a href="{% url 'home' %}" id="main-title">Guzzle</a>
+        </div>
+        <div id="account-container">
+            {% if user.is_authenticated %}
+                <a href="{% url 'myRecipes' %}">My Recipes</a>
+                <a href="{% url 'signout' %}">Sign out</a>
+            {% else %}
+                <a href="{% url 'signup' %}">Sign up</a>
+                <a href="{% url 'login' %}">Log in</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+    {% if user.is_authenticated %}
+        <div id="content">
+            <h1>Create a New Recipe</h1>
+            
+            <!-- Recipe Form -->
+            <form method="POST" action="/createRecipe/">
+                <input type="hidden" name="formType" value="createRecipe">
+                {% csrf_token %}
+                
+                <!-- Recipe Title -->
+                <div class="form-group">
+                    <label for="title">Recipe Title:</label>
+                    <input type="text" id="title" name="title">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="5"></textarea>
+                </div>
+
+                <!-- Instructions -->
+                <div class="form-group">
+                    <label for="instructions">Instructions:</label>
+                    <textarea id="instructions" name="instructions" rows="5"></textarea>                    
+                </div>
+
+                <!-- Tags Section -->
+                <div class="form-group">
+                    <label for="tags" id="tags-label">Tags:</label>
+                    <div id="tags-container">
+                        <div class="tag-dropdown-container">
+                            <select name="tags" id="tags" class="tag-dropdown" onchange="document.getElementById('tags-label').innerHTML += ' ' + this.value;">
+                                <option value="" disabled selected>Select a Tag</option>
+                                {% for count, tag in tagsEnum %}
+                                    <option value="{{ tag.id }}">{{count|add:1}}. {{ tag.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="button" onclick="document.getElementById('tags-label').innerHTML = 'Tags:'; document.getElementById('tags').selectedIndex = 0;">Clear</button>
+                        </div>
+                    </div>                      
+                </div>
+                    
+                <!-- Ingredients -->
+                <div class="form-group">
+                    <label for="ingredients" id="ingredients-label">Ingredients:</label>
+                    <div id="ingredients-container">
+                        <div class="ingredient-dropdown-container">
+                            <select name="ingredients" id="ingredients" class="ingredient-dropdown" onchange="document.getElementById('ingredients-label').innerHTML += ' ' + this.value;">
+                                <option value="" disabled selected>Select a Ingredient</option>
+                                {% for count, ingredient in ingredientsEnum %}
+                                    <option value="{{ ingredient.id }}">{{count|add:1}}. {{ ingredient.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="text" id="ingredientQuantity" name="quantity_{{ingredient.id}}" placeholder="Quantity (e.g. 2)">
+                            <input type="text" id="ingredientUnit" name="unit_{{ingredient.id}}" placeholder="Unit (e.g. cups)">
+                            <button type="button" onclick="document.getElementById('ingredients-label').innerHTML = 'Ingredients:'; document.getElementById('ingredients').selectedIndex = 0;">Clear</button>
+                        </div>
+                    </div>                      
+                </div>
+
+                <!-- Duration -->
+                <div class="form-group">
+                    <label for="duration">Duration (in minutes):</label>
+                    <input type="number" id="duration" name="duration">
+                </div>
+
+                <!-- Servings -->
+                <div class="form-group">
+                    <label for="servings">Servings:</label>
+                    <input type="number" id="servings" name="servings">
+                </div>
+
+                <!-- Calories -->
+                <div class="form-group">
+                    <label for="calories">Calories per Serving:</label>
+                    <input type="number" id="calories" name="calories">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit">Create Recipe</button>
+            </form>
+            
+            <form method="POST" action="/registerTag/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="newTag">Add New Tag:</label>
+                    <input type="text" id="newTag" name="tagName" placeholder="e.g. Vegetarian">
+                    <button type="submit">Add Tag</button>
+                </div>
+                
+            </form>
+
+            <form method="POST" action="/registerIngredient/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="newIngredient">Add New Ingredient:</label>
+                    <input type="text" id="newIngredient" name="ingredientName" placeholder="e.g. Onion">
+                    <button type="submit">Add Ingredient</button>
+                </div>
+            </form>
+
+        </div>
+    {% else %}
+        <div id="content">
+            <h1>Please log in to create a recipe.</h1>
+        </div>
+    {% endif %}
+
+
+</body>
+</html>

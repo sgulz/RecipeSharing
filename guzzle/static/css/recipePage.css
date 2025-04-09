@@ -1,0 +1,51 @@
+#tags-container {
+    display: flex;
+    align-items: center;
+}
+
+#selected-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 10px;
+}
+
+.tag-box {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 3px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.tag-box span {
+    margin-right: 5px;
+}
+
+.tag-box .delete-tag {
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.tag-dropdown-container {
+    position: relative;
+}
+
+.tag-dropdown {
+    display: none;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.tag-dropdown.show-dropdown {
+    display: block;
+}
+
+.plus-button {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}

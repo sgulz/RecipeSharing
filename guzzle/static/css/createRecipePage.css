@@ -1,0 +1,15 @@
+.temp {
+    display: inline-block;
+}
+
+#post-button-wrapper-2 {
+    background-color: var(--pageBackgroundColour);
+}
+
+#content {
+    font-size: 20px;
+}
+
+.form-group {
+    padding: 10px;
+}
