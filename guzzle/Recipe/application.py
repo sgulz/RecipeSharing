@@ -43,6 +43,15 @@ class RecipeApplication:
         except Exception as e:
             print("Error getting recipe:", e)
             return None
+        
+    def getUsersRecipes(self, author: User):
+        try:
+            print("Getting user's recipes")
+            recipes = Recipe.objects.filter(author=author)
+            return recipes
+        except Exception as e:
+            print("Error getting user's recipes:", e)
+            return None
 
     def getAllRecipes(self):
         try:

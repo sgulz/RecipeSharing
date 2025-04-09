@@ -52,7 +52,9 @@ def createRecipe(request):
     return render(request, 'createRecipePage.html', context)
 
 def myRecipes(request):
-    recipes = recipeApplication.getAllRecipes() 
+    recipes = recipeApplication.getUsersRecipes(request.user) 
+    for recipe in recipes:
+        print(recipe.title)
 
     context = {'recipesEnum': enumerate(recipes)}
     return render(request, 'myRecipesPage.html', context)

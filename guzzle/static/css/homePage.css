@@ -1,0 +1,12 @@
+.recipe-item {
+    padding-bottom: 10px;
+}
+
+.recipe-link {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.recipe-link:hover {
+    text-decoration: underline;
+}
