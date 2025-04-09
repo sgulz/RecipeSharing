@@ -47,7 +47,8 @@ QMUL Software Engineering Project - Recipe Sharing Website
 
 ## How to Run
 - Run application: (from Root directory) Run "python guzzle/manage.py runserver"
-- Run unit tests: TODO
+- Run all unit tests: (from Root directory) Run "python guzzle/manage.py test"
+- Run specific Django App unit tests: (from Root directory) Run "python guzzle/manage.py test your_app_name"
 
 ## Potential Errors
 - Venv won't activate: activation command is different on Mac and Windows

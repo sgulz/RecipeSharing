@@ -19,12 +19,18 @@ from django.contrib import admin
 from django.urls import path
 from Home import views as homeViews
 from Account import views as accountViews
+from Recipe import views as recipeViews
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", homeViews.home, name="home"),
     path("signup/", accountViews.signup, name="signup"),
     path("login/", accountViews.login, name="login"),
-    path("signout/", accountViews.signout, name="signout")
+    path("signout/", accountViews.signout, name="signout"),
+    path("createRecipe/", recipeViews.createRecipe, name="createRecipe"),
+    path("myRecipes/", recipeViews.myRecipes, name="myRecipes"),
+    path('recipe/<int:id>/view/', recipeViews.viewRecipe, name='viewRecipe'),
+    path('registerTag/', recipeViews.registerTag, name='registerTag'),
+    path('registerIngredient/', recipeViews.registerIngredient, name='registerIngredient'),
 
 ]

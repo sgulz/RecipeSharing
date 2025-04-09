@@ -3,8 +3,6 @@
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from dataclasses import dataclass
-from typing import Optional, Tuple
 
 class AccountApplication:
     def __init__(self):
