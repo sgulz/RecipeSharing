@@ -20,6 +20,7 @@ from django.urls import path
 from Home import views as homeViews
 from Account import views as accountViews
 from Recipe import views as recipeViews
+from Friends import views as friendsViews
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -32,5 +33,10 @@ urlpatterns = [
     path('recipe/<int:id>/view/', recipeViews.viewRecipe, name='viewRecipe'),
     path('registerTag/', recipeViews.registerTag, name='registerTag'),
     path('registerIngredient/', recipeViews.registerIngredient, name='registerIngredient'),
-
+    path("friends/", friendsViews.myFriends, name="myFriends"),
+    path("addFriend/", friendsViews.addFriend, name="addFriend"),
+    path("acceptFriendRequest/<int:requestID>/", friendsViews.acceptFriendRequest, name="acceptFriendRequest"),
+    path("rejectFriendRequest/<int:requestID>/", friendsViews.rejectFriendRequest, name="rejectFriendRequest"),
+    path("cancelFriendRequest/<int:requestID>/", friendsViews.cancelFriendRequest, name="cancelFriendRequest"),
+    path("removeFriend/<int:friendID>/", friendsViews.removeFriend, name="removeFriend"),
 ]
