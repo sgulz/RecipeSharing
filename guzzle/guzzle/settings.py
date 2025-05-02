@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "Home",
     "Account",
     "Recipe",
+    "Friends"
 ]
 
 MIDDLEWARE = [
