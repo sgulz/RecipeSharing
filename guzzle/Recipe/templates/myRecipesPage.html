@@ -1,59 +1,121 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Guzzle</title>
-    <link rel="stylesheet" href="{% static 'css/global.css' %}">
-    <link rel="stylesheet" href="{% static 'css/myRecipesPage.css' %}">
-    
+   <title>Guzzle</title>
+   <link rel="stylesheet" href="{% static 'css/global.css' %}">
+   <link rel="stylesheet" href="{% static 'css/homePage.css' %}">
+   <link rel="stylesheet" href="{% static 'css/favourites.css' %}">
 </head>
 <body>
-    <div id="header">
-        <div id="post-container">
-            <a href="{% url 'home' %}" id="post-button-wrapper">
-                <button id="post-button">
-                    🏠︎
-                </button>
-            </a>
-        </div>
-        <div id="title-container">
-            <a href="{% url 'home' %}" id="main-title">Guzzle</a>
-
-        </div>
-        <div id="account-container">
-            {% if user.is_authenticated %}
-                <a href="{% url 'myFriends' %}">My Friends</a>
-                <a href="{% url 'myRecipes' %}">My Recipes</a>
-                <a href="{% url 'signout' %}">Sign out</a>
-            {% else %}
-                <a href="{% url 'signup' %}">Sign up</a>
-                <a href="{% url 'login' %}">Log in</a>
-            {% endif %}
-        </div>
-
-    </div>
-
-    <div id="content">
-        <div>
-            <h1 class="temp">My Recipes</h1>
-            <a href="{% url 'createRecipe' %}" id="post-button-wrapper-2" class="temp">
-                <button id="post-button">
-                    +
-                </button>
-            </a>
-        </div>
-        <div id="recipe-list">
-            {% for count, recipe in recipesEnum %}
-                <div class="recipe-item">
-                    <a href="{% url 'viewRecipe' recipe.id %}" class="recipe-link">{{ recipe.title }}</a>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+<div id="header">
+   <div id="post-container">
+       <a href="{% url 'home' %}" id="post-button-wrapper">
+           <button id="post-button">
+               🏠︎
+           </button>
+       </a>
+   </div>
+   <div id="title-container">
+       <a href="{% url 'home' %}" id="main-title">Guzzle</a>
+   </div>
+   <div id="account-container">
+       {% if user.is_authenticated %}
+       <a href="{% url 'myFriends' %}">My Friends</a>
+       <a href="{% url 'my_favourites' %}">My Favourites</a>
+       <a href="{% url 'myRecipes' %}">My Recipes</a>
+       <a href="{% url 'signout' %}">Sign out</a>
+       {% else %}
+       <a href="{% url 'signup' %}">Sign up</a>
+       <a href="{% url 'login' %}">Log in</a>
+       {% endif %}
+   </div>
+</div>
 
 
+<div id="content">
+   <div class="header-actions">
+       <h2>My Recipes</h2>
+       <a href="{% url 'createRecipe' %}" id="create-recipe-button">
+           <button id="post-button">+</button>
+       </a>
+   </div>
 
 
+   {% if recipes %}
+   <div class="recipe-grid">
+       {% for count, recipe in recipesEnum %}
+       <div class="recipe-card">
+           <h2>{{ recipe.title }}</h2>
+           <p class="recipe-description">{{ recipe.description|truncatewords:30 }}</p>
+           <div class="recipe-meta">
+               <p>By: {{ recipe.author }}</p>
+               <p>🕒 {{ recipe.duration }} minutes</p>
+               <p>👥 {{ recipe.servings }} servings</p>
+               <p>🔥 {{ recipe.calories }} calories</p>
+           </div>
+           <div class="recipe-actions">
+               <a href="{% url 'viewRecipe' recipe.id %}" class="view-recipe-button">
+                   View Recipe
+               </a>
+               <div class="favourite-container">
+                   {% csrf_token %}
+                   <button id="favourite-button-{{ recipe.id }}"
+                           onclick="toggleFavourite({{ recipe.id }})"
+                           class="favourite-button {% if recipe.favourites.all|length > 0 %}favourited{% endif %}">
+                       {% if recipe.favourites.all|length > 0 %}
+                       ❤️ Favourited
+                       {% else %}
+                       🤍 Add to Favourites
+                       {% endif %}
+                   </button>
+                   <span id="favourite-count-{{ recipe.id }}" class="favourite-count">
+                       {{ recipe.favourite_count }} {% if recipe.favourite_count == 1 %}person{% else %}people{% endif %} favourited this
+                   </span>
+               </div>
+           </div>
+       </div>
+       {% endfor %}
+   </div>
+   {% else %}
+   <p class="no-recipes">You haven't created any recipes yet.</p>
+   {% endif %}
+</div>
+
+
+<script>
+   function toggleFavourite(recipeId) {
+       fetch(`/recipe/${recipeId}/favourite/`, {
+           method: 'POST',
+           headers: {
+               'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+               'Content-Type': 'application/json'
+           },
+       })
+           .then(response => response.json())
+           .then(data => {
+               const favouriteButton = document.querySelector(`#favourite-button-${recipeId}`);
+               const favouriteCount = document.querySelector(`#favourite-count-${recipeId}`);
+
+
+               if (data.status === 'added') {
+                   favouriteButton.classList.add('favourited');
+                   favouriteButton.innerHTML = '❤️ Favourited';
+               } else {
+                   favouriteButton.classList.remove('favourited');
+                   favouriteButton.innerHTML = '🤍 Add to Favourites';
+               }
+
+
+               favouriteCount.textContent = `${data.count} ${data.count === 1 ? 'person' : 'people'} favourited this`;
+           })
+           .catch(error => {
+               console.error('Error:', error);
+               alert('There was an error updating the favourite status');
+           });
+   }
+</script>
 </body>
 </html>

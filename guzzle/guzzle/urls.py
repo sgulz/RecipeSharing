@@ -39,4 +39,6 @@ urlpatterns = [
     path("rejectFriendRequest/<int:requestID>/", friendsViews.rejectFriendRequest, name="rejectFriendRequest"),
     path("cancelFriendRequest/<int:requestID>/", friendsViews.cancelFriendRequest, name="cancelFriendRequest"),
     path("removeFriend/<int:friendID>/", friendsViews.removeFriend, name="removeFriend"),
+    path('recipe/<int:recipe_id>/favourite/', recipeViews.toggle_favourite, name='toggle_favourite'),
+    path('my-favourites/', recipeViews.my_favourites, name='my_favourites'),
 ]
