@@ -1,0 +1,91 @@
+.friend-item, .request-item, .sent-item {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.inline-form {
+    display: inline-block;
+}
+
+.request-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.accept-button, .reject-button, .cancel-button, .remove-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.accept-button {
+    background-color: #4CAF50;
+}
+
+.reject-button, .cancel-button, .remove-button {
+    background-color: #f44336;
+}
+
+.search-section, .friends-section, .pending-section, .sent-section {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.error-message {
+    color: #f44336;
+    margin: 10px 0;
+}
+
+.search-section input[type="text"] {
+    width: 70%;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.search-section button {
+    padding: 8px 15px;
+}
+
+.user-item {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.status-pending {
+    color: #FFC107;
+}
+
+.status-accepted {
+    color: #4CAF50;
+}
+
+.status-rejected {
+    color: #f44336;
+}
+
+.back-link {
+    margin-top: 20px;
+}
+
+.back-link a {
+    text-decoration: none;
+    padding: 8px 15px;
+    background-color: var(--headerBackgroundColour);
+    border-radius: 5px;
+}
+
+.search-again {
+    margin-top: 30px;
+}

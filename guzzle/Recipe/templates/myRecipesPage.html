@@ -23,6 +23,7 @@
         </div>
         <div id="account-container">
             {% if user.is_authenticated %}
+                <a href="{% url 'myFriends' %}">My Friends</a>
                 <a href="{% url 'myRecipes' %}">My Recipes</a>
                 <a href="{% url 'signout' %}">Sign out</a>
             {% else %}

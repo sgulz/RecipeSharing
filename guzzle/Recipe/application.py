@@ -6,7 +6,7 @@ from .models import Recipe, Ingredient, Tag, RecipeIngredient, RecipeTag
 
 class RecipeApplication:
     def __init__(self):
-        self.userID = None
+        pass
 
     def getOrCreateTag(self, tagName: str):
         tag, created = Tag.objects.get_or_create(name=tagName)
