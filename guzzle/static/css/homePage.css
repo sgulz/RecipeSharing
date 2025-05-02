@@ -1,16 +1,98 @@
 .recipe-item {
-    padding-bottom: 10px;
-    text-align: left;
-    margin: 10px 0;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    background-color: rgb(54, 93, 117);
+    padding: 20px;
+    border-radius: 8px;
 }
 
 .recipe-link {
     text-decoration: none;
     font-size: 20px;
-    display: block;
-    padding: 5px;
+    color: white;
 }
 
 .recipe-link:hover {
     text-decoration: underline;
+    color: #f8f9fa;
+}
+
+.recipe-meta {
+    margin: 10px 0;
+    color: white;
+}
+
+.recipe-meta p {
+    margin: 5px 0;
+    color: white;
+}
+
+.recipe-description {
+    color: white;
+    line-height: 1.4;
+}
+
+.no-recipes {
+    text-align: center;
+    padding: 40px;
+    color: rgb(54, 93, 117);
+    font-size: 1.2em;
+    background: white;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+#content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.temp {
+    display: inline-block;
+    margin-right: 10px;
+    color: white;
+}
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header-actions h2 {
+    margin: 0;
+    color: rgb(54, 93, 117);
+}
+
+.recipe-grid .recipe-card,
+.recipe-card {
+    background: rgb(54, 93, 117) !important;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: white;
+}
+
+.recipe-card h2,
+.recipe-card .recipe-description,
+.recipe-card .recipe-meta p {
+    color: white;
+}
+
+.view-recipe-button {
+    background: white;
+    color: rgb(54, 93, 117);
+    border: none;
+}
+
+.favourite-button {
+    background: white;
+    color: rgb(54, 93, 117);
+}
+
+.favourite-count {
+    color: white;
 }
